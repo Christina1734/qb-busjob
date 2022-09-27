@@ -11,11 +11,11 @@ local Translations = {
     info = {
         bus = 'حافلة',
         goto_busstop = 'اذهب إلى محطة الحافلات',
-        busstop_text = '~g~E~s~ ﺹﺎﺑ ﻒﻗﻮﻣ',
+        busstop_text = '[E] ﺹﺎﺑ ﻒﻗﻮﻣ',
         bus_plate = 'BUS', -- Can be 3 or 4 characters long (uses random 4 digits)
         bus_depot = 'ﺕﻼﻓﺎﺤﻟﺍ ﻉﺩﻮﺘﺴﻣ', -- you need arabic 
-        bus_stop_work = '~g~E~s~ - ﻞﻤﻌﻟﺍ ﻦﻋ ﻒﻗﻮﺗ',
-        bus_job_vehicles = '~g~E~s~ - ﻞﻤﻌﻟﺍ ﺕﺍﺭﺎﻴﺳ'
+        bus_stop_work = '[E] - ﻞﻤﻌﻟﺍ ﻦﻋ ﻒﻗﻮﺗ',
+        bus_job_vehicles = '[E] - ﻞﻤﻌﻟﺍ ﺕﺍﺭﺎﻴﺳ'
     },
     menu = {
         bus_header = 'سيارات العمل',
@@ -23,7 +23,10 @@ local Translations = {
     }
 }
 
-Lang = Locale:new({
-    phrases = Translations,
-    warnOnMissing = true
-})
+if GetConvar('qb_locale', 'en') == 'ar' then
+    Lang = Locale:new({
+        phrases = Translations,
+        warnOnMissing = true,
+        fallbackLang = Lang,
+    })
+end

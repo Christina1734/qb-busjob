@@ -11,11 +11,11 @@ local Translations = {
     info = {
         bus = 'Bussi',
         goto_busstop = 'Aja seuraavalle pysäkille',
-        busstop_text = '~g~E~s~ Bussipysäkki',
+        busstop_text = '[E] Bussipysäkki',
         bus_plate = 'BUS', -- Can be 3 or 4 characters long (uses random 4 digits)
         bus_depot = 'Bussivarikko',
-        bus_stop_work = '~g~E~s~ Lopeta työskentely',
-        bus_job_vehicles = '~g~E~s~ Työajoneuvot'
+        bus_stop_work = '[E] Lopeta työskentely',
+        bus_job_vehicles = '[E] Työajoneuvot'
     },
     menu = {
         bus_header = 'Bussit',
@@ -23,7 +23,10 @@ local Translations = {
     }
 }
 
-Lang = Locale:new({
-    phrases = Translations,
-    warnOnMissing = true
-})
+if GetConvar('qb_locale', 'en') == 'fi' then
+    Lang = Locale:new({
+        phrases = Translations,
+        warnOnMissing = true,
+        fallbackLang = Lang,
+    })
+end
